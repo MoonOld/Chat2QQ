@@ -1,9 +1,13 @@
 package Moonold.entity;
 
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ChatMessages {
+@Data
+public class ChatMessages implements Serializable {
     private List<Message> messages;
 
     public ChatMessages(String role,String content){
@@ -17,7 +21,8 @@ public class ChatMessages {
         return this;
     }
 
-    private class Message{
+    @Data
+    private class Message implements Serializable{
         Role role;
         String content;
         Message(String role, String content){
