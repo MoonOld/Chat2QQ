@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context">
+    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="change base sdk to build a customize openai http client">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/Request/ChatRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/ChatMessages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/Main.java" afterDir="false" />
     </list>
@@ -14,6 +17,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,12 +41,14 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "settings.build.tools.auto.reload": "ALL",
+    "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -48,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1678031251734</updated>
-      <workItem from="1678031252905" duration="5774000" />
+      <workItem from="1678031252905" duration="10613000" />
     </task>
     <task id="LOCAL-00001" summary="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context">
       <created>1678034190881</created>
@@ -57,7 +69,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678034190881</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="change base sdk to build a customize openai http client">
+      <created>1678067716352</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1678067716352</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -76,6 +95,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context" />
-    <option name="LAST_COMMIT_MESSAGE" value="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context" />
+    <MESSAGE value="change base sdk to build a customize openai http client" />
+    <option name="LAST_COMMIT_MESSAGE" value="change base sdk to build a customize openai http client" />
   </component>
 </project>
