@@ -1,6 +1,6 @@
 package EntityTest;
 
-import Moonold.entity.Message;
+import Moonold.entity.chat.Message;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 

@@ -1,5 +1,6 @@
-package Moonold.entity;
+package Moonold.entity.chat;
 
+import Moonold.entity.Model;
 import lombok.Data;
 
 import java.util.LinkedList;
@@ -8,7 +9,7 @@ import java.util.List;
 @Data
 public class ChatRequestBody {
     Model model;
-    List<Message> messages = new LinkedList<>();
+    List<Message> messages;
 
     private ChatRequestBody(Builder builder){
         this.model = builder.model;

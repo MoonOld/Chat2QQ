@@ -1,4 +1,4 @@
-import Moonold.entity.ChatRequestBody;
+import Moonold.entity.chat.ChatRequestBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 

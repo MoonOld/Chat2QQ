@@ -1,10 +1,8 @@
-package Moonold.entity;
+package Moonold.entity.chat;
 
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
 
 //public class ChatMessages implements Serializable {
 //    private List<Message> messages;
@@ -26,16 +24,15 @@ import java.util.List;
 
 @Data
 public class Message implements Serializable{
-    Role role;
-    String content;
+    private String role;
+    private String content;
+    public Message(){}
     public Message(String role, String content){
         this.content = content;
-        for(Role element : Role.values()){
-            if(element.name().equals(role)){
-                this.role = element;
-                return;
-            }
+        if(Role.roleSet.contains(role)){
+            this.role = role;
         }
         throw new IllegalArgumentException("Invalid Role :"+role);
     }
+
 }

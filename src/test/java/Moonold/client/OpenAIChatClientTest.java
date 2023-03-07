@@ -1,7 +1,6 @@
 package Moonold.client;
 
-import Moonold.entity.ChatRequestBody;
-import junit.framework.TestCase;
+import Moonold.entity.chat.ChatRequestBody;
 import okhttp3.Response;
 import org.junit.Test;
 
