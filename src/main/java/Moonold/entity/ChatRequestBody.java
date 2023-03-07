@@ -1,18 +1,16 @@
-package Moonold.Request;
+package Moonold.entity;
 
-import Moonold.entity.Message;
-import Moonold.entity.Model;
 import lombok.Data;
 
 import java.util.LinkedList;
 import java.util.List;
 
 @Data
-public class ChatRequest {
+public class ChatRequestBody {
     Model model;
     List<Message> messages = new LinkedList<>();
 
-    private ChatRequest(Builder builder){
+    private ChatRequestBody(Builder builder){
         this.model = builder.model;
         this.messages = builder.messages;
     }
@@ -36,11 +34,11 @@ public class ChatRequest {
             return this;
         }
 
-        public ChatRequest build(){
+        public ChatRequestBody build(){
             if(hashInt!=3){
                 throw new IllegalArgumentException("Not enough params to build!");
             }
-            return new ChatRequest(this);
+            return new ChatRequestBody(this);
         }
 
 
@@ -55,7 +53,10 @@ public class ChatRequest {
             Message newMessage = new Message(role,content);
             messages.add(newMessage);
         }
-
+    }
+    public void addNewMessage(String role,String content){
+        Message newMessage = new Message(role,content);
+        messages.add(newMessage);
     }
 
 }
