@@ -1,22 +1,28 @@
 package Moonold.client;
 
+import Moonold.entity.chat.Message;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import okhttp3.*;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class OpenAIChatClient {
     private static final String chatApi = "https://api.openai.com/v1/chat/completions";
     private static final MediaType jsonType = MediaType.parse("application/json");
-    private final ObjectMapper objectMapper;
-    private final OkHttpClient client;
+    private static final ObjectMapper objectMapper= new ObjectMapper();
+    private static final OkHttpClient client= new OkHttpClient();
     private  final String OpenAISK;
 
+    private  Deque<Message> ctx;
+    private int ctxLength;
+
     public OpenAIChatClient(){
-        client = new OkHttpClient();
-        objectMapper = new ObjectMapper();
+
         OpenAISK = System.getenv("OPENAI_SK");
+        ctx = new LinkedList<>();
     }
 
     @SneakyThrows
@@ -35,6 +41,9 @@ public class OpenAIChatClient {
         return post(chatApi,bodyObject);
     }
 
-
+    public boolean setCtxLength(int Length){
+        ctxLength = Length;
+        return true;
+    }
 
 }
