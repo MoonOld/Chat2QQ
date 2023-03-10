@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="add client and pass test case">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/response/ChatResponseBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/response/Choice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/response/Usage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/EntityTest/ChatResponseBodyTest.java" afterDir="false" />
+    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="add response parse module and pass test case">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Moonold/client/MiraiBotTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/ChatRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/ChatRequestBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EntityTest/ChatMessagesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EntityTest/ChatMessagesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Moonold/client/OpenAIChatClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Moonold/client/OpenAIChatClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RequestBodyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RequestBodyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit3 Test Class" />
         <option value="Class" />
+        <option value="JUnit3 Test Class" />
       </list>
     </option>
   </component>
@@ -74,17 +70,7 @@
       <recent name="Moonold.client" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ChatResponseBodyTest.chatResponseDeserializedTest">
-    <configuration name="ChatMessagesTest.MessagesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Chat2QQ" />
-      <option name="PACKAGE_NAME" value="EntityTest" />
-      <option name="MAIN_CLASS_NAME" value="EntityTest.ChatMessagesTest" />
-      <option name="METHOD_NAME" value="MessagesTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.MiraiBotTest.testTestMessage">
     <configuration name="ChatResponseBodyTest.chatResponseDeserializedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Chat2QQ" />
       <extension name="coverage">
@@ -112,6 +98,22 @@
       <option name="PACKAGE_NAME" value="EntityTest" />
       <option name="MAIN_CLASS_NAME" value="EntityTest.ChatResponseBodyTest" />
       <option name="METHOD_NAME" value="chatResponseParseTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MiraiBotTest.testTestMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chat2QQ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Moonold.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Moonold.client" />
+      <option name="MAIN_CLASS_NAME" value="Moonold.client.MiraiBotTest" />
+      <option name="METHOD_NAME" value="testTestMessage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -145,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MiraiBotTest.testTestMessage" />
+        <item itemvalue="JUnit.OpenAIChatClientTest.postTest" />
         <item itemvalue="JUnit.ChatResponseBodyTest.chatResponseDeserializedTest" />
         <item itemvalue="JUnit.ChatResponseBodyTest.chatResponseParseTest" />
-        <item itemvalue="JUnit.OpenAIChatClientTest.postTest" />
         <item itemvalue="JUnit.RequestBodyTest.ChatRequestTest" />
-        <item itemvalue="JUnit.ChatMessagesTest.MessagesTest" />
       </list>
     </recent_temporary>
   </component>
@@ -165,7 +167,8 @@
       <workItem from="1678089719989" duration="5428000" />
       <workItem from="1678199842576" duration="2107000" />
       <workItem from="1678202153771" duration="410000" />
-      <workItem from="1678202574436" duration="3104000" />
+      <workItem from="1678202574436" duration="10845000" />
+      <workItem from="1678437088094" duration="2343000" />
     </task>
     <task id="LOCAL-00001" summary="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context">
       <created>1678034190881</created>
@@ -209,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678202697065</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add response parse module and pass test case">
+      <created>1678205985501</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678205985501</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,15 +243,16 @@
     <MESSAGE value="fix Messages serialize func" />
     <MESSAGE value="fix requestBody serialization" />
     <MESSAGE value="add client and pass test case" />
-    <option name="LAST_COMMIT_MESSAGE" value="add client and pass test case" />
+    <MESSAGE value="add response parse module and pass test case" />
+    <option name="LAST_COMMIT_MESSAGE" value="add response parse module and pass test case" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/EntityTest/ChatResponseBodyTest.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/main/java/Moonold/entity/chat/Message.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

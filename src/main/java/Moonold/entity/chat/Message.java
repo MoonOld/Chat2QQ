@@ -31,6 +31,7 @@ public class Message implements Serializable{
         this.content = content;
         if(Role.roleSet.contains(role)){
             this.role = role;
+            return;
         }
         throw new IllegalArgumentException("Invalid Role :"+role);
     }

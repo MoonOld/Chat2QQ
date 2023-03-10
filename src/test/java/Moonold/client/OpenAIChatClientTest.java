@@ -1,6 +1,8 @@
 package Moonold.client;
 
 import Moonold.entity.chat.ChatRequestBody;
+import Moonold.entity.chat.response.ChatResponseBody;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Response;
 import org.junit.Test;
 
@@ -14,7 +16,10 @@ public class OpenAIChatClientTest{
         chatRequestBody.addNewMessage("user","你好");
         OpenAIChatClient openAIChatClient = new OpenAIChatClient();
         Response response = openAIChatClient.post(chatRequestBody);
-        System.out.println(response.body().string());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ChatResponseBody chatResponseBody = objectMapper.readValue(response.body().string(), ChatResponseBody.class);
+        System.out.println(chatResponseBody.getContents());
     }
 
 }
