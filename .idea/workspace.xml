@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="add chat context support">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/ChatClientProxy.java" afterDir="false" />
+    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="add /enable cmd support and passed test cases">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/ChatClientProxy.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/OpenAIChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/OpenAIChatClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/Model.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/request/ChatRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/request/ChatRequestBody.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Moonold/client/MiraiBotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Moonold/client/MiraiBotTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Moonold/client/OpenAIChatClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Moonold/client/OpenAIChatClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RequestBodyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RequestBodyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,18 +74,47 @@
       <recent name="Moonold.client" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MiraiBotTest.testEnableChat">
-    <configuration name="ChatMessagesTest.MessagesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Moonold.Main" />
       <module name="Chat2QQ" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="EntityTest.*" />
+          <option name="PATTERN" value="Moonold.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="EntityTest" />
-      <option name="MAIN_CLASS_NAME" value="EntityTest.ChatMessagesTest" />
-      <option name="METHOD_NAME" value="MessagesTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MiraiBotTest.testChatBot" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chat2QQ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Moonold.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Moonold.client" />
+      <option name="MAIN_CLASS_NAME" value="Moonold.client.MiraiBotTest" />
+      <option name="METHOD_NAME" value="testChatBot" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MiraiBotTest.testContinueChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chat2QQ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Moonold.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Moonold.client" />
+      <option name="MAIN_CLASS_NAME" value="Moonold.client.MiraiBotTest" />
+      <option name="METHOD_NAME" value="testContinueChat" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,33 +152,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RequestBodyTest.ChatRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Chat2QQ" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RequestBodyTest" />
-      <option name="METHOD_NAME" value="ChatRequestTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RequestBodyTest.postCtxTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Chat2QQ" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RequestBodyTest" />
-      <option name="METHOD_NAME" value="postCtxTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MiraiBotTest.testChatBot" />
+        <item itemvalue="JUnit.MiraiBotTest.testContinueChat" />
         <item itemvalue="JUnit.MiraiBotTest.testEnableChat" />
-        <item itemvalue="JUnit.RequestBodyTest.postCtxTest" />
-        <item itemvalue="JUnit.RequestBodyTest.ChatRequestTest" />
         <item itemvalue="JUnit.OpenAIChatClientTest.postTest" />
-        <item itemvalue="JUnit.ChatMessagesTest.MessagesTest" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +177,7 @@
       <workItem from="1678202574436" duration="10845000" />
       <workItem from="1678437088094" duration="20056000" />
       <workItem from="1678676695142" duration="16510000" />
-      <workItem from="1678723427296" duration="4327000" />
+      <workItem from="1678723427296" duration="7175000" />
     </task>
     <task id="LOCAL-00001" summary="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context">
       <created>1678034190881</created>
@@ -242,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678680533559</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add /enable cmd support and passed test cases">
+      <created>1678727812210</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1678727812210</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,18 +284,10 @@
     <MESSAGE value="add Mirai Bot" />
     <MESSAGE value="After familiarizing myself with the basic operations and configuration of Mirai, the next step is to handle the concurrency and callbacks of HTTP packets" />
     <MESSAGE value="add chat context support" />
-    <option name="LAST_COMMIT_MESSAGE" value="add chat context support" />
+    <MESSAGE value="add /enable cmd support and passed test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="add /enable cmd support and passed test cases" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java</url>
-          <line>129</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="configuration" />

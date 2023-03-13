@@ -61,6 +61,8 @@ public class ChatRequestBody {
         if(messages.size()==ctxLength){
             Message bufMessage = messages.remove(0);
             if(messages.size()>1 && bufMessage.getRole().equals(Role.system)){
+                //remove assistant and user messages
+                messages.remove(0);
                 messages.remove(0);
                 messages.add(0,bufMessage);
             }

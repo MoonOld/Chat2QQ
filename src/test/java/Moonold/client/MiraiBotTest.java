@@ -56,11 +56,12 @@ public class MiraiBotTest extends TestCase {
     }
 
     public void testEnableChat(){
-        MessageChain messageChain = new MessageChainBuilder().append("/enable 1a ").build();
         MiraiBot bot = new MiraiBot();
+
+        MessageChain messageChain = new MessageChainBuilder().append("/enable 1a ").build();
         System.out.println(bot.enableChat(messageChain));
 
-        messageChain = new MessageChainBuilder().append("/enable 10 ").build();
+        messageChain = new MessageChainBuilder().append("/enable 5 ").build();
         System.out.println(bot.enableChat(messageChain));
 
         messageChain = new MessageChainBuilder().append("/enable ").build();
@@ -69,7 +70,34 @@ public class MiraiBotTest extends TestCase {
         messageChain = new MessageChainBuilder().append("/enable 25").build();
         System.out.println(bot.enableChat(messageChain));
 
+        messageChain = new MessageChainBuilder().append("/enable 1 abc").build();
+        System.out.println(bot.enableChat(messageChain));
+
         messageChain = new MessageChainBuilder().append("/enable 10 abc").build();
         System.out.println(bot.enableChat(messageChain));
+    }
+
+    public void testContinueChat(){
+        MiraiBot bot = new MiraiBot();
+
+        System.out.println(bot.continueChat("a"));
+
+        MessageChain messageChain = new MessageChainBuilder().append("/enable 10 你是一个可爱的猫娘助手").build();
+        bot.enableChat(messageChain);
+        System.out.println(bot.continueChat("亲亲"));
+    }
+
+
+    public void testChatBot(){
+        MiraiBot bot = new MiraiBot();
+        bot.login();
+        bot.startChat();
+        try {
+            while (true) {
+                Thread.sleep(1000L);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

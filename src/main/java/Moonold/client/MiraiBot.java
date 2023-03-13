@@ -3,6 +3,9 @@ package Moonold.client;
 import Moonold.entity.Model;
 import Moonold.entity.chat.Role;
 import Moonold.entity.chat.request.ChatRequestBody;
+import Moonold.entity.chat.response.ChatResponseBody;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.BotFactory;
 import net.mamoe.mirai.event.GlobalEventChannel;
@@ -14,6 +17,7 @@ import net.mamoe.mirai.message.data.MessageChain;
 import net.mamoe.mirai.message.data.MessageChainBuilder;
 import net.mamoe.mirai.utils.BotConfiguration;
 import net.mamoe.mirai.utils.DeviceInfo;
+import okhttp3.Response;
 
 import java.awt.*;
 import java.util.Scanner;
@@ -21,6 +25,8 @@ import java.util.Scanner;
 public class MiraiBot {
     private  final Bot bot;
     private ChatRequestBody chatRequestBody=null;
+    private final OpenAIChatClient openAIChatClient;
+    private final ObjectMapper objectMapper;
 
     public MiraiBot(){
         bot = BotFactory.INSTANCE.newBot(Long.valueOf(System.getenv("MIRAI_QQ")), System.getenv("MIRAI_PASS"),
@@ -28,6 +34,8 @@ public class MiraiBot {
                     setProtocol(MiraiProtocol.IPAD);
                     fileBasedDeviceInfo();
                 }});
+        openAIChatClient = new OpenAIChatClient();
+        objectMapper = new ObjectMapper();
     }
     public  void login(){
         if(!bot.isOnline())bot.login();
@@ -62,7 +70,7 @@ public class MiraiBot {
         GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event ->{
             MessageChain messages = event.getMessage();
             if(messages.contentToString().startsWith("/enablechat")){
-                enableChat(messages);
+                event.getGroup().sendMessage(enableChat(messages));
             } else if( chatRequestBody != null && messages.contains(new At(bot.getId()))){
                 StringBuilder sb = new StringBuilder();
                 for(Message toCheck : messages){
@@ -70,13 +78,24 @@ public class MiraiBot {
                         sb.append(toCheck.contentToString());
                     }
                 }
-                continueChat(sb.toString());
+                event.getGroup().sendMessage(continueChat(sb.toString()));
             }
         });
     }
 
-    private  String continueChat(String chats) {
-        return "ok";
+    @SneakyThrows
+    public  String continueChat(String chats) {
+        if( chatRequestBody == null) {
+            return "暂不支持其他指令或内容";
+        }
+        chatRequestBody.addNewMessage(Role.user,chats);
+
+        Response response = openAIChatClient.post(chatRequestBody);
+        ChatResponseBody chatResponseBody = objectMapper.readValue(response.body().string(), ChatResponseBody.class);
+
+        String content = chatResponseBody.getContents();
+        chatRequestBody.addNewMessage(Role.assistant,content);
+        return content;
     }
 
     public String enableChat(MessageChain messages) {
@@ -95,7 +114,7 @@ public class MiraiBot {
                 }
             } else if(spaceCount == 1) {
                 if(chars[i]>'9' || chars[i]<'0'){
-                    return "不正确的context长度参数，请输入1～20的数字";
+                    return "不正确的context长度参数，请输入数字";
                 }
                 //first & not blank
                 if (left < 0) {
@@ -118,14 +137,18 @@ public class MiraiBot {
             sysCmd = cmd.substring(right).trim();
         }
         int ctxLength = Integer.parseInt(length);
-        if(ctxLength>20 || ctxLength < 1){
-            return "不正确的context长度参数，请输入1～20的数字";
+        if( ( ctxLength %2 != 0 && ctxLength !=1 )  || ctxLength>20 || ctxLength < 1 || (ctxLength <2 && !sysCmd.isEmpty())){
+            // 不为1的奇数、不在1到20、有sys且长度为1（此时无法写入新messages）
+            return "不正确的context长度参数。请输入1或小于20的偶数，并保证提供System指令时长度大于等于2";
         }
         chatRequestBody = new ChatRequestBody.Builder()
                     .model(Model.gpt_3_5)
-                    .ctxLength(Integer.parseInt(length))
+                    .ctxLength(ctxLength)
                     .build();
-        if(!sysCmd.isEmpty())chatRequestBody.addNewMessage(Role.system,sysCmd);
+        if(!sysCmd.isEmpty()){
+            chatRequestBody.addNewMessage(Role.system,sysCmd);
+            chatRequestBody.setCtxLength(ctxLength +1);
+        }
 
         return "已开启聊天";
 

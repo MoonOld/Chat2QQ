@@ -15,23 +15,13 @@ public class Main {
 //    private final OkHttpClient httpClient = new OkHttpClient();
 
     public static void main(String[] args) throws Exception {
+        MiraiBot bot = new MiraiBot();
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.submit(()->{
+            bot.login();
+            bot.startChat();
+        });
+
     }
 
-//    private void sendPost() throws Exception {
-//        String url = "https://api.openai.com/v1/chat/completions";
-//        ObjectMapper jsonObject = new Js;
-//
-//        RequestBody body = RequestBody.create(MediaType.parse("application/json"), json);
-//
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .post(body)
-//                .build();
-//
-//        try (Response response = httpClient.newCall(request).execute()) {
-//            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-//
-//            System.out.println(response.body().string());
-//        }
-//    }
 }
