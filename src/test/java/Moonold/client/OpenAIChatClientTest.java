@@ -1,6 +1,7 @@
 package Moonold.client;
 
-import Moonold.entity.chat.ChatRequestBody;
+import Moonold.entity.chat.Role;
+import Moonold.entity.chat.request.ChatRequestBody;
 import Moonold.entity.chat.response.ChatResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Response;
