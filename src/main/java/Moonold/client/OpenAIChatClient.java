@@ -16,13 +16,10 @@ public class OpenAIChatClient {
     private static final OkHttpClient client= new OkHttpClient();
     private  final String OpenAISK;
 
-    private  Deque<Message> ctx;
-    private int ctxLength;
 
     public OpenAIChatClient(){
 
         OpenAISK = System.getenv("OPENAI_SK");
-        ctx = new LinkedList<>();
     }
 
     @SneakyThrows
@@ -41,9 +38,6 @@ public class OpenAIChatClient {
         return post(chatApi,bodyObject);
     }
 
-    public boolean setCtxLength(int Length){
-        ctxLength = Length;
-        return true;
-    }
+
 
 }

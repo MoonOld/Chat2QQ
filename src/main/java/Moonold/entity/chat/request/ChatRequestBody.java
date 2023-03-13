@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 public class ChatRequestBody {
-    Model model;
+    String model;
     List<Message> messages;
 
     @JsonIgnore
@@ -19,33 +19,27 @@ public class ChatRequestBody {
 
     private ChatRequestBody(Builder builder){
         this.model = builder.model;
-        this.messages = builder.messages;
+        this.messages = new LinkedList<>();
         this.ctxLength = builder.ctxLength;
     }
 
     public static class Builder {
-        private Model model;
-        private List<Message> messages;
+        private String model;
         private int hashInt = 0;
         private int ctxLength = 1;
 
         public Builder(){}
 
         public Builder model(String model){
-            this.model = Model.getModel(model);
+            if(Model.modelSet.contains(model)){
+                this.model = model;
+            } else {
+                throw new IllegalArgumentException("不支持所输入的model");
+            }
             hashInt |= 1;
             return this;
         }
 
-        public Builder message(String role,String content){
-            if(hashInt>>1 == 0 ){
-                ChatMessages(role,content);
-                hashInt |= 1<<1;
-            } else {
-                addNewMessage(role,content);
-            }
-            return this;
-        }
 
         public Builder ctxLength(int length){
             if(length<=0){
@@ -56,23 +50,10 @@ public class ChatRequestBody {
         }
 
         public ChatRequestBody build(){
-            if(hashInt!=3){
+            if(hashInt!=1){
                 throw new IllegalArgumentException("Not enough params to build!");
             }
             return new ChatRequestBody(this);
-        }
-
-
-        private  void ChatMessages(String role,String content) {
-            if (messages == null) {
-                messages = new LinkedList<>();
-            }
-            addNewMessage(role, content);
-        }
-
-        public void addNewMessage(String role,String content){
-            Message newMessage = new Message(role,content);
-            messages.add(newMessage);
         }
     }
     public void addNewMessage(String role,String content){

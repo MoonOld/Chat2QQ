@@ -2,23 +2,14 @@ package Moonold.entity;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Model {
-    gpt_3_5;
+import java.util.HashSet;
+import java.util.Set;
 
-    @JsonValue
-    public String getName() {
-        switch (this) {
-            case gpt_3_5:
-                return "gpt-3.5-turbo";
-        }
-        return "";
-    }
-    public static  Model getModel(String model){
-        for(Model toCheck : Model.values()){
-            if(toCheck.name().equals(model)){
-                return toCheck;
-            }
-        }
-        throw new IllegalArgumentException("Invalid Model :"+model);
+public class Model {
+    public static final String gpt_3_5 = "gpt-3.5-turbo";
+    public static final Set<String> modelSet = new HashSet<>();
+
+    static {
+        modelSet.add(gpt_3_5);
     }
 }

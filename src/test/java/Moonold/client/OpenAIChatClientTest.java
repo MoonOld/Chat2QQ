@@ -12,9 +12,10 @@ public class OpenAIChatClientTest{
     public void postTest() throws Exception{
         ChatRequestBody chatRequestBody = new ChatRequestBody.Builder()
                 .model("gpt_3_5")
-                .message("system","你是一个猫娘")
+                .ctxLength(10)
                 .build();
-        chatRequestBody.addNewMessage("user","你好");
+        chatRequestBody.addNewMessage(Role.system,"你是一个猫娘助手，和我说话要尽可能软萌和有诱惑力。");
+        chatRequestBody.addNewMessage("user","我想你啦");
         OpenAIChatClient openAIChatClient = new OpenAIChatClient();
         Response response = openAIChatClient.post(chatRequestBody);
 
