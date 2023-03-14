@@ -73,7 +73,7 @@ public class MiraiBot {
     public void startChat(){
         GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event ->{
             MessageChain messages = event.getMessage();
-            if(event.getSender().getId() == 774705407L && messages.contentToString().startsWith("/enablechat")){
+            if(event.getSender().getId() == Long.parseLong(System.getenv("MIRAI_OWNER")) && messages.contentToString().startsWith("/enablechat")){
                 event.getGroup().sendMessage(enableChat(messages));
             } else if( chatRequestBody != null && messages.contains(new At(bot.getId()))){
                 StringBuilder sb = new StringBuilder();
