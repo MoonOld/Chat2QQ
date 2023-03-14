@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="add /enable cmd support and passed test cases">
+    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="support easy group chat and passed test cases">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/ChatClientProxy.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/request/ChatRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/request/ChatRequestBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Moonold/client/MiraiBotTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Moonold/client/MiraiBotTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Moonold/client/OpenAIChatClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Moonold/client/OpenAIChatClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/OpenAIChatClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/OpenAIChatClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +173,7 @@
       <workItem from="1678202574436" duration="10845000" />
       <workItem from="1678437088094" duration="20056000" />
       <workItem from="1678676695142" duration="16510000" />
-      <workItem from="1678723427296" duration="7175000" />
+      <workItem from="1678723427296" duration="13193000" />
     </task>
     <task id="LOCAL-00001" summary="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context">
       <created>1678034190881</created>
@@ -256,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678727812210</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="support easy group chat and passed test cases">
+      <created>1678730707881</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678730707881</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,9 +288,20 @@
     <MESSAGE value="After familiarizing myself with the basic operations and configuration of Mirai, the next step is to handle the concurrency and callbacks of HTTP packets" />
     <MESSAGE value="add chat context support" />
     <MESSAGE value="add /enable cmd support and passed test cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="add /enable cmd support and passed test cases" />
+    <MESSAGE value="support easy group chat and passed test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="support easy group chat and passed test cases" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/Moonold/client/OpenAIChatClient.java</url>
+          <line>20</line>
+          <properties field="client" class="Moonold.client.OpenAIChatClient" />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="configuration" />

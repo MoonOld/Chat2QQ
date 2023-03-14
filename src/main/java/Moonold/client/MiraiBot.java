@@ -20,11 +20,15 @@ import net.mamoe.mirai.utils.DeviceInfo;
 import okhttp3.Response;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MiraiBot {
     private  final Bot bot;
     private ChatRequestBody chatRequestBody=null;
+    private Map<Long,ChatResponseBody> contexts= new ConcurrentHashMap<>();
     private final OpenAIChatClient openAIChatClient;
     private final ObjectMapper objectMapper;
 
@@ -69,7 +73,7 @@ public class MiraiBot {
     public void startChat(){
         GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event ->{
             MessageChain messages = event.getMessage();
-            if(messages.contentToString().startsWith("/enablechat")){
+            if(event.getSender().getId() == 774705407L && messages.contentToString().startsWith("/enablechat")){
                 event.getGroup().sendMessage(enableChat(messages));
             } else if( chatRequestBody != null && messages.contains(new At(bot.getId()))){
                 StringBuilder sb = new StringBuilder();
