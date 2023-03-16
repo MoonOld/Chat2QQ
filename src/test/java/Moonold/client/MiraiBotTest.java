@@ -29,7 +29,7 @@ public class MiraiBotTest extends TestCase {
         }
     }
 
-    public void testGroupListen(){
+//    public void testGroupListen(){
 
 //        ExecutorService threadPoolExecutor =  Executors.newSingleThreadExecutor();
 //        threadPoolExecutor.execute(()-> {
@@ -43,17 +43,17 @@ public class MiraiBotTest extends TestCase {
 //                e.printStackTrace();
 //            }
 //        });
-        MiraiBot bot = new MiraiBot();
-        bot.login();
-        bot.startListen();
-        try {
-            while (true) {
-                Thread.sleep(1000L);
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//        MiraiBot bot = new MiraiBot();
+//        bot.login();
+//        bot.startListen();
+//        try {
+//            while (true) {
+//                Thread.sleep(1000L);
+//            }
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
     public void testEnableChat(){
         MiraiBot bot = new MiraiBot();
@@ -87,17 +87,17 @@ public class MiraiBotTest extends TestCase {
         System.out.println(bot.continueChat("亲亲"));
     }
 
-
-    public void testChatBot(){
-        MiraiBot bot = new MiraiBot();
-        bot.login();
-        bot.startChat();
-        try {
-            while (true) {
-                Thread.sleep(1000L);
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//
+//    public void testChatBot(){
+//        MiraiBot bot = new MiraiBot();
+//        bot.login();
+//        bot.startChat();
+//        try {
+//            while (true) {
+//                Thread.sleep(1000L);
+//            }
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 }

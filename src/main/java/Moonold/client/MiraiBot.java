@@ -37,6 +37,7 @@ public class MiraiBot {
                 new BotConfiguration(){{
                     setProtocol(MiraiProtocol.IPAD);
                     fileBasedDeviceInfo();
+                    redirectBotLogToFile();
                 }});
         openAIChatClient = new OpenAIChatClient();
         objectMapper = new ObjectMapper();
