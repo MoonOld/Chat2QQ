@@ -70,4 +70,14 @@ public class ChatRequestBody {
         messages.add(newMessage);
     }
 
+    // message can be refered both as long as can be freed
+    @Override
+    public ChatRequestBody clone(){
+        ChatRequestBody toReturn = new Builder()
+                .model(this.model)
+                .ctxLength(this.ctxLength)
+                .build();
+        toReturn.messages.addAll(this.messages);
+        return toReturn;
+    }
 }

@@ -26,15 +26,15 @@ import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MiraiBot {
-    private  final Bot bot;
-    private ChatRequestBody chatRequestBody=null;
-    private Map<Long,ChatResponseBody> contexts= new ConcurrentHashMap<>();
+    private final Bot bot;
+    private ChatRequestBody chatRequestBody = null;
+    private Map<Long, ChatResponseBody> contexts = new ConcurrentHashMap<>();
     private final OpenAIChatClient openAIChatClient;
     private final ObjectMapper objectMapper;
 
-    public MiraiBot(){
+    public MiraiBot() {
         bot = BotFactory.INSTANCE.newBot(Long.valueOf(System.getenv("MIRAI_QQ")), System.getenv("MIRAI_PASS"),
-                new BotConfiguration(){{
+                new BotConfiguration() {{
                     setProtocol(MiraiProtocol.IPAD);
                     fileBasedDeviceInfo();
                     redirectBotLogToFile();
@@ -42,15 +42,16 @@ public class MiraiBot {
         openAIChatClient = new OpenAIChatClient();
         objectMapper = new ObjectMapper();
     }
-    public  void login(){
-        if(!bot.isOnline())bot.login();
+
+    public void login() {
+        if (!bot.isOnline()) bot.login();
     }
 
-    public  void testMessage(String message){
+    public void testMessage(String message) {
         bot.getFriend(774705407L).sendMessage(message);
     }
 
-    public  void startListen(){
+    public void startListen() {
         GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event -> {
             // 判断是否为特定群
             if (event.getGroup().getId() == 761538612L) {
@@ -71,15 +72,15 @@ public class MiraiBot {
         });
     }
 
-    public void startChat(){
-        GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event ->{
+    public void startChat() {
+        GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event -> {
             MessageChain messages = event.getMessage();
-            if(event.getSender().getId() == Long.parseLong(System.getenv("MIRAI_OWNER")) && messages.contentToString().startsWith("/enablechat")){
+            if (event.getSender().getId() == Long.parseLong(System.getenv("MIRAI_OWNER")) && messages.contentToString().startsWith("/enablechat")) {
                 event.getGroup().sendMessage(enableChat(messages));
-            } else if( chatRequestBody != null && messages.contains(new At(bot.getId()))){
+            } else if (chatRequestBody != null && messages.contains(new At(bot.getId()))) {
                 StringBuilder sb = new StringBuilder();
-                for(Message toCheck : messages){
-                    if(!(toCheck instanceof At)){
+                for (Message toCheck : messages) {
+                    if (!(toCheck instanceof At)) {
                         sb.append(toCheck.contentToString());
                     }
                 }
@@ -89,19 +90,27 @@ public class MiraiBot {
     }
 
     @SneakyThrows
-    public  String continueChat(String chats) {
-        if( chatRequestBody == null) {
+    public String continueChat(String chats) {
+        if (chatRequestBody == null) {
             return "暂不支持其他指令或内容";
         }
-        chatRequestBody.addNewMessage(Role.user,chats);
+        ChatRequestBody bodyClone = chatRequestBody.clone();
+        bodyClone.addNewMessage(Role.user, chats);
 
-        Response response = openAIChatClient.post(chatRequestBody);
-        ChatResponseBody chatResponseBody = objectMapper.readValue(response.body().string(), ChatResponseBody.class);
+        try {
+            Response response = openAIChatClient.post(bodyClone);
+            ChatResponseBody chatResponseBody = objectMapper.readValue(response.body().string(), ChatResponseBody.class);
 
-        String content = chatResponseBody.getContents();
-        chatRequestBody.addNewMessage(Role.assistant,content);
-        return content;
+            // success post and read
+            String content = chatResponseBody.getContents();
+            chatRequestBody.addNewMessage(Role.user,chats);
+            chatRequestBody.addNewMessage(Role.assistant, content);
+            return content;
+        } catch(Exception e) {
+            return e.getMessage();
+        }
     }
+
 
     public String enableChat(MessageChain messages) {
         String cmd = messages.contentToString().trim();
