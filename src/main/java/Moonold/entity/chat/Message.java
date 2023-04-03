@@ -27,6 +27,8 @@ public class Message implements Serializable {
     private String role;
     private String content;
 
+    // this constructor is used to inform Jackson!!!!!!
+    public Message(){}
 
     public Message(String role, String content) {
         this.content = content;

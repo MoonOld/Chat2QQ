@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="modify to properly build artifact">
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="format codes and fix some warning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/request/ChatRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/request/ChatRequestBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/Message.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +175,7 @@
       <workItem from="1678796882315" duration="7000" />
       <workItem from="1678844672075" duration="8957000" />
       <workItem from="1678898788271" duration="4562000" />
-      <workItem from="1680508725773" duration="4069000" />
+      <workItem from="1680508725773" duration="5352000" />
     </task>
     <task id="LOCAL-00001" summary="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context">
       <created>1678034190881</created>
@@ -285,7 +282,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678958432087</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix unpaired messages context and support error output straight forward">
+      <created>1680512969800</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1680512969800</updated>
+    </task>
+    <task id="LOCAL-00017" summary="format codes and fix some warning">
+      <created>1680513872483</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1680513872483</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,7 +329,10 @@
     <MESSAGE value="support configure timeout and right check" />
     <MESSAGE value="finish readme" />
     <MESSAGE value="modify to properly build artifact" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify to properly build artifact" />
+    <MESSAGE value="fix unpaired messages context and support error output straight forward" />
+    <MESSAGE value="format codes" />
+    <MESSAGE value="format codes and fix some warning" />
+    <option name="LAST_COMMIT_MESSAGE" value="format codes and fix some warning" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
