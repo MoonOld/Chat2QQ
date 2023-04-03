@@ -23,17 +23,18 @@ import java.io.Serializable;
 
 
 @Data
-public class Message implements Serializable{
+public class Message implements Serializable {
     private String role;
     private String content;
-    public Message(){}
-    public Message(String role, String content){
+
+
+    public Message(String role, String content) {
         this.content = content;
-        if(Role.roleSet.contains(role)){
+        if (Role.roleSet.contains(role)) {
             this.role = role;
             return;
         }
-        throw new IllegalArgumentException("Invalid Role :"+role);
+        throw new IllegalArgumentException("Invalid Role :" + role);
     }
 
 }

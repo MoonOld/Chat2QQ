@@ -9,7 +9,7 @@ public class Choice {
     private String finish_reason;
     private Integer index;
 
-    public String getContent(){
+    public String getContent() {
         return message.getContent();
     }
 }

@@ -13,9 +13,9 @@ public class ChatResponseBody {
     private Usage usage;
     private List<Choice> choices;
 
-    public String getContents(){
+    public String getContents() {
         StringBuilder sb = new StringBuilder();
-        for(Choice choice: choices){
+        for (Choice choice : choices) {
             sb.append(choice.getContent());
         }
         return sb.toString();

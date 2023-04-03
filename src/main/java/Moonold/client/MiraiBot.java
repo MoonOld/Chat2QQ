@@ -9,20 +9,15 @@ import lombok.SneakyThrows;
 import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.BotFactory;
 import net.mamoe.mirai.event.GlobalEventChannel;
-import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 import net.mamoe.mirai.message.data.At;
 import net.mamoe.mirai.message.data.Message;
 import net.mamoe.mirai.message.data.MessageChain;
 import net.mamoe.mirai.message.data.MessageChainBuilder;
 import net.mamoe.mirai.utils.BotConfiguration;
-import net.mamoe.mirai.utils.DeviceInfo;
 import okhttp3.Response;
 
-import java.awt.*;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MiraiBot {
@@ -32,8 +27,12 @@ public class MiraiBot {
     private final OpenAIChatClient openAIChatClient;
     private final ObjectMapper objectMapper;
 
+    private static final long OWNER_ID = Long.parseLong(System.getenv("MIRAI_OWNER"));
+    private static final long BOT_ID = Long.parseLong(System.getenv("MIRAI_QQ"));
+    private static final String BOT_PASS = System.getenv("MIRAI_PASS");
+
     public MiraiBot() {
-        bot = BotFactory.INSTANCE.newBot(Long.valueOf(System.getenv("MIRAI_QQ")), System.getenv("MIRAI_PASS"),
+        bot = BotFactory.INSTANCE.newBot(BOT_ID, BOT_PASS,
                 new BotConfiguration() {{
                     setProtocol(MiraiProtocol.IPAD);
                     fileBasedDeviceInfo();
@@ -48,7 +47,7 @@ public class MiraiBot {
     }
 
     public void testMessage(String message) {
-        bot.getFriend(774705407L).sendMessage(message);
+        bot.getFriend(OWNER_ID).sendMessage(message);
     }
 
     public void startListen() {
@@ -75,7 +74,7 @@ public class MiraiBot {
     public void startChat() {
         GlobalEventChannel.INSTANCE.subscribeAlways(GroupMessageEvent.class, event -> {
             MessageChain messages = event.getMessage();
-            if (event.getSender().getId() == Long.parseLong(System.getenv("MIRAI_OWNER")) && messages.contentToString().startsWith("/enablechat")) {
+            if (event.getSender().getId() == OWNER_ID && messages.contentToString().startsWith("/enablechat")) {
                 event.getGroup().sendMessage(enableChat(messages));
             } else if (chatRequestBody != null && messages.contains(new At(bot.getId()))) {
                 StringBuilder sb = new StringBuilder();
@@ -97,16 +96,15 @@ public class MiraiBot {
         ChatRequestBody bodyClone = chatRequestBody.clone();
         bodyClone.addNewMessage(Role.user, chats);
 
-        try {
-            Response response = openAIChatClient.post(bodyClone);
+        try(Response response = openAIChatClient.post(bodyClone)) {
             ChatResponseBody chatResponseBody = objectMapper.readValue(response.body().string(), ChatResponseBody.class);
 
             // success post and read
             String content = chatResponseBody.getContents();
-            chatRequestBody.addNewMessage(Role.user,chats);
+            chatRequestBody.addNewMessage(Role.user, chats);
             chatRequestBody.addNewMessage(Role.assistant, content);
             return content;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return e.getMessage();
         }
     }
@@ -116,52 +114,52 @@ public class MiraiBot {
         String cmd = messages.contentToString().trim();
         char[] chars = cmd.toCharArray();
         int spaceCount = 0;
-        int left=-1,right =-1;
-        String length="1",sysCmd="";
-        for(int i =0;i<chars.length;i++){
-            if(chars[i]== ' '){
+        int left = -1, right = -1;
+        String length = "1", sysCmd = "";
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == ' ') {
                 spaceCount++;
 
                 //pass blank
-                while(chars[i+1]==' '){
+                while (chars[i + 1] == ' ') {
                     i++;
                 }
-            } else if(spaceCount == 1) {
-                if(chars[i]>'9' || chars[i]<'0'){
+            } else if (spaceCount == 1) {
+                if (chars[i] > '9' || chars[i] < '0') {
                     return "不正确的context长度参数，请输入数字";
                 }
                 //first & not blank
                 if (left < 0) {
                     left = i;
                 }
-                if (i<chars.length-1 && chars[i + 1] == ' ') {
+                if (i < chars.length - 1 && chars[i + 1] == ' ') {
                     //first & not blank in end
                     right = i + 1;
                 }
 
             }
         }
-        if( left > 0){
+        if (left > 0) {
             // if what follows cmd
-            if( right<0 ){
+            if (right < 0) {
                 // if
                 right = chars.length;
             }
-            length = cmd.substring(left,right);
+            length = cmd.substring(left, right);
             sysCmd = cmd.substring(right).trim();
         }
         int ctxLength = Integer.parseInt(length);
-        if( ( ctxLength %2 != 0 && ctxLength !=1 )  || ctxLength>20 || ctxLength < 1 || (ctxLength <2 && !sysCmd.isEmpty())){
+        if ((ctxLength % 2 != 0 && ctxLength != 1) || ctxLength > 20 || ctxLength < 1 || (ctxLength < 2 && !sysCmd.isEmpty())) {
             // 不为1的奇数、不在1到20、有sys且长度为1（此时无法写入新messages）
             return "不正确的context长度参数。请输入1或小于20的偶数，并保证提供System指令时长度大于等于2";
         }
         chatRequestBody = new ChatRequestBody.Builder()
-                    .model(Model.gpt_3_5)
-                    .ctxLength(ctxLength)
-                    .build();
-        if(!sysCmd.isEmpty()){
-            chatRequestBody.addNewMessage(Role.system,sysCmd);
-            chatRequestBody.setCtxLength(ctxLength +1);
+                .model(Model.gpt_3_5)
+                .ctxLength(ctxLength)
+                .build();
+        if (!sysCmd.isEmpty()) {
+            chatRequestBody.addNewMessage(Role.system, sysCmd);
+            chatRequestBody.setCtxLength(ctxLength + 1);
         }
 
         return "已开启聊天";
