@@ -10,10 +10,7 @@ import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.BotFactory;
 import net.mamoe.mirai.event.GlobalEventChannel;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
-import net.mamoe.mirai.message.data.At;
-import net.mamoe.mirai.message.data.Message;
-import net.mamoe.mirai.message.data.MessageChain;
-import net.mamoe.mirai.message.data.MessageChainBuilder;
+import net.mamoe.mirai.message.data.*;
 import net.mamoe.mirai.utils.BotConfiguration;
 import okhttp3.Response;
 
@@ -83,7 +80,11 @@ public class MiraiBot {
                         sb.append(toCheck.contentToString());
                     }
                 }
-                event.getGroup().sendMessage(continueChat(sb.toString()));
+                MessageChain toSend = new MessageChainBuilder()
+                        .append(new QuoteReply(messages))
+                        .append(continueChat(sb.toString()))
+                                .build();
+                event.getGroup().sendMessage(toSend);
             }
         });
     }
