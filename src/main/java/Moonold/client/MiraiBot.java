@@ -3,6 +3,7 @@ package Moonold.client;
 import Moonold.entity.Model;
 import Moonold.entity.chat.Role;
 import Moonold.entity.chat.request.ChatRequestBody;
+import Moonold.entity.chat.response.ChatErrorBody;
 import Moonold.entity.chat.response.ChatResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -76,7 +77,7 @@ public class MiraiBot {
             } else if (chatRequestBody != null && messages.contains(new At(bot.getId()))) {
                 StringBuilder sb = new StringBuilder();
                 for (Message toCheck : messages) {
-                    if (!(toCheck instanceof At)) {
+                    if (toCheck instanceof PlainText) {
                         sb.append(toCheck.contentToString());
                     }
                 }
@@ -98,13 +99,17 @@ public class MiraiBot {
         bodyClone.addNewMessage(Role.user, chats);
 
         try(Response response = openAIChatClient.post(bodyClone)) {
-            ChatResponseBody chatResponseBody = objectMapper.readValue(response.body().string(), ChatResponseBody.class);
-
-            // success post and read
-            String content = chatResponseBody.getContents();
-            chatRequestBody.addNewMessage(Role.user, chats);
-            chatRequestBody.addNewMessage(Role.assistant, content);
-            return content;
+            try {
+                ChatResponseBody chatResponseBody = objectMapper.readValue(response.body().string(), ChatResponseBody.class);
+                // success post and read
+                String content = chatResponseBody.getContents();
+                chatRequestBody.addNewMessage(Role.user, chats);
+                chatRequestBody.addNewMessage(Role.assistant, content);
+                return content;
+            } catch (Exception e){
+                ChatErrorBody chatErrorBody = objectMapper.readValue(response.body().string(),ChatErrorBody.class);
+                return chatErrorBody.getError().toString();
+            }
         } catch (Exception e) {
             return e.getMessage();
         }

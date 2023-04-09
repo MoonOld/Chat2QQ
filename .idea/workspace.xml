@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="fix the constructor...&#10;do not always trust idea Problems and do package and test before push">
+    <list default="true" id="aef223e9-566d-4a50-acb0-64ad15a2994a" name="Changes" comment="add reply and do shell scripts">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Moonold/entity/chat/response/ChatErrorBody.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Moonold/client/MiraiBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/EntityTest/ChatResponseBodyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EntityTest/ChatResponseBodyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,7 @@
       <recent name="Moonold.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.ChatResponseBodyTest.ErrorResponseTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Moonold.Main" />
       <module name="Chat2QQ" />
@@ -105,41 +107,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MiraiBotTest.testChatBot" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChatResponseBodyTest.ErrorResponseApplyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Chat2QQ" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Moonold.client.*" />
+          <option name="PATTERN" value="EntityTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="Moonold.client" />
-      <option name="MAIN_CLASS_NAME" value="Moonold.client.MiraiBotTest" />
-      <option name="METHOD_NAME" value="testChatBot" />
+      <option name="PACKAGE_NAME" value="EntityTest" />
+      <option name="MAIN_CLASS_NAME" value="EntityTest.ChatResponseBodyTest" />
+      <option name="METHOD_NAME" value="ErrorResponseApplyTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MiraiBotTest.testContinueChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChatResponseBodyTest.ErrorResponseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Chat2QQ" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Moonold.client.*" />
+          <option name="PATTERN" value="EntityTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="Moonold.client" />
-      <option name="MAIN_CLASS_NAME" value="Moonold.client.MiraiBotTest" />
-      <option name="METHOD_NAME" value="testContinueChat" />
+      <option name="PACKAGE_NAME" value="EntityTest" />
+      <option name="MAIN_CLASS_NAME" value="EntityTest.ChatResponseBodyTest" />
+      <option name="METHOD_NAME" value="ErrorResponseTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Chat2QQ-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/target/Chat2QQ-1.0-SNAPSHOT.jar" />
-      <method v="2" />
+    <configuration name="ChatResponseBodyTest.chatResponseDeserializedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Chat2QQ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="EntityTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="EntityTest" />
+      <option name="MAIN_CLASS_NAME" value="EntityTest.ChatResponseBodyTest" />
+      <option name="METHOD_NAME" value="chatResponseDeserializedTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Chat2QQ.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Chat2QQ_jar/Chat2QQ.jar" />
@@ -147,11 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ChatResponseBodyTest.ErrorResponseTest" />
+        <item itemvalue="JUnit.ChatResponseBodyTest.ErrorResponseApplyTest" />
+        <item itemvalue="JUnit.ChatResponseBodyTest.chatResponseDeserializedTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JAR Application.Chat2QQ.jar" />
-        <item itemvalue="JAR Application.Chat2QQ-1.0-SNAPSHOT.jar" />
-        <item itemvalue="JUnit.MiraiBotTest.testChatBot" />
-        <item itemvalue="JUnit.MiraiBotTest.testContinueChat" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +189,8 @@
       <workItem from="1678796882315" duration="7000" />
       <workItem from="1678844672075" duration="8957000" />
       <workItem from="1678898788271" duration="4562000" />
-      <workItem from="1680508725773" duration="8098000" />
+      <workItem from="1680508725773" duration="8140000" />
+      <workItem from="1681031298206" duration="6084000" />
     </task>
     <task id="LOCAL-00001" summary="a simple demo&#10;todo list:&#10;model change&#10;system option&#10;context">
       <created>1678034190881</created>
@@ -303,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680514156797</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="add reply and do shell scripts">
+      <created>1680525241789</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1680525241789</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +362,8 @@
     <MESSAGE value="format codes" />
     <MESSAGE value="format codes and fix some warning" />
     <MESSAGE value="fix the constructor...&#10;do not always trust idea Problems and do package and test before push" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the constructor...&#10;do not always trust idea Problems and do package and test before push" />
+    <MESSAGE value="add reply and do shell scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add reply and do shell scripts" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
