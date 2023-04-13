@@ -13,6 +13,7 @@ import net.mamoe.mirai.event.GlobalEventChannel;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 import net.mamoe.mirai.message.data.*;
 import net.mamoe.mirai.utils.BotConfiguration;
+import org.apache.logging.log4j.*;
 import okhttp3.Response;
 
 import java.util.Map;
@@ -28,6 +29,8 @@ public class MiraiBot {
     private static final long OWNER_ID = Long.parseLong(System.getenv("MIRAI_OWNER"));
     private static final long BOT_ID = Long.parseLong(System.getenv("MIRAI_QQ"));
     private static final String BOT_PASS = System.getenv("MIRAI_PASS");
+
+    private static final Logger log = LogManager.getLogger(MiraiBot.class);
 
     public MiraiBot() {
         bot = BotFactory.INSTANCE.newBot(BOT_ID, BOT_PASS,
@@ -90,7 +93,6 @@ public class MiraiBot {
         });
     }
 
-    @SneakyThrows
     public String continueChat(String chats) {
         if (chatRequestBody == null) {
             return "暂不支持其他指令或内容";
@@ -111,6 +113,7 @@ public class MiraiBot {
                 return chatErrorBody.getError().toString();
             }
         } catch (Exception e) {
+            log.error("发生HTTP或未知错误： ",e);
             return e.getMessage();
         }
     }
